@@ -8,7 +8,21 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-     - name: Construção da iamgem Docker
+     - uses: actions/checkout@v4.1.2
+       name: Checkout do repositorio 
+     - name: Autenticação no Docker
+       with:
+         username: ${{ secrets.DOCKERHUB_USER }}
+         password: ${{ secrets.DOCKERHUB_PWD }}
+     - name: Construção da imagem Docker
+       with:
+         context: ./src
+         file: ./src/Dockeerfile
+         push: true
+         tags: |
+           lfogaca34/devops4devs-news:latest
+           lfogaca34/devops4devs-news:${(github.run_number}
+           
        run: echo "Docker Build"
      - name: "Publicar a imagem no Docker Hub"
        run: echo "Docker push"
