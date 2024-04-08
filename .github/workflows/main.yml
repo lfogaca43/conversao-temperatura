@@ -23,7 +23,7 @@ jobs:
          push: true
          tags: |
            lfogaca34/devops4devs-news:latest
-           lfogaca34/devops4devs-news:${(github.run_number}           
+           lfogaca34/devops4devs-news:${(github.run_number)}           
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
